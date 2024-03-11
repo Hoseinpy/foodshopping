@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+    <h1><a href="{% url 'logout-page' %}"><button type="submit">logout</button></a></h1>
+    <h1><a href="{% url 'profile-page' %}"><button type="submit">profile</button></a></h1>
+    {% else %}
+    <h1><a href="{% url 'login-page' %}"><button type="submit">login</button></a></h1>
+    <h1><a href="{% url 'register-page' %}"><button type="submit">regisetr</button></a></h1>
+    {% endif %}
+    {% if user.is_superuser and user.is_staff %}
+    <h1><a href="/admin/" target="_blank"><button type="submit">admin pannel</button></a></h1>
+    {% endif %}
+    <h1>home page</h1>
+    {% for f in foods %}
+    <h1>
+        {% if f.image %}
+        <img src="{{ f.image.url }}" alt="" width="250" style="border: solid black;"><br>
+        {% endif %}
+        {{ f.name }}<br>
+        {{ f.price }}<br>
+        {{ f.ratting }}
+        <hr>
+    </h1>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile</title>
+</head>
+<body>
+    <h1><a href="{% url 'index-page' %}">home</a></h1>
+    <h1>Profile page</h1>
+    <h1><a href="{% url 'edit-profile-page' %}">edit profile</a></h1>
+    <h1><a href="{% url 'rests-password-page' %}">change password</a></h1>
+    {% if user.avatar %}
+    <img src="{{ user.avatar.url }}" alt="" width="400">
+    {% endif %}
+    <h1>username: {{ user.username }}</h1>
+    <h1>bio: {{ user.bio }}</h1>
+</body>
+</html>
